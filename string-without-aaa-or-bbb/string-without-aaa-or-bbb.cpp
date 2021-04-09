@@ -1,0 +1,59 @@
+class Solution {
+public:
+    string strWithout3a3b(int a, int b) {
+        string res;
+        if(a>b)
+        {
+            while(a>0||b>0)
+            {
+                if(a>0)
+                {
+                    res.push_back('a');
+                    a--;
+                }
+                if(a>b)
+                {
+                    res.push_back('a');
+                    a--;
+                }
+                if(b>0)
+                {
+                    res.push_back('b');
+                    b--;
+                }
+            }
+        }
+        else if(b>a)
+        {
+            while(a>0||b>0)
+            {
+                if(b>0)
+                {
+                    res.push_back('b');
+                    b--;
+                }
+                if(b>a)
+                {
+                    res.push_back('b');
+                    b--;
+                }
+                if(a>0)
+                {
+                    res.push_back('a');
+                    a--;
+                }
+            }
+        }
+        else
+        {
+            while(a>0)
+            {
+                res.push_back('a');
+                a--;
+                res.push_back('b');
+                b--;
+            }
+        }
+        return res;
+    }
+};
