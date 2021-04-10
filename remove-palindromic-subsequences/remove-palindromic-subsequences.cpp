@@ -12,7 +12,7 @@ public:
         }
         return true;
     }
-    int removePalindromeSub(string s) {
+    int removePalindromeSub(string &s) {
         if(is_palin(s))
             return 1;
         else
