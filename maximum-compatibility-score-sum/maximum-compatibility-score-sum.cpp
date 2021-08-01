@@ -1,11 +1,14 @@
 class Solution {
 public:
-    int get_val(vector<int> &a, vector<int> &b)
+    int get_val(vector<int> &student, vector<int> &mentor)
     {
-        int ans =0 ;
-        for(int i=0 ; i<a.size(); i++)
-            ans += (a[i] == b[i]) ? 1 : 0;
-        return ans;
+        	int val=0;
+            for(int i=0;i<student.size();i++)
+            {
+                if(student[i]==mentor[i])
+                    val++;
+            }
+            return val;
     }
     
     int solve(vector<vector<int>> &student, vector<vector<int>> &mentor, vector<bool> &visited, int index)
