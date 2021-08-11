@@ -11,60 +11,23 @@
  */
 class Solution {
 public:
-class Data {
-	public:
-	bool isBST;
-	int maxVal, minVal;
-	int size;
-	Data(bool isBST, int maxVal, int minVal,  int size) {
-		this->isBST = isBST;
-		this->size = size;
-		this->maxVal = maxVal;
-		this->minVal = minVal;
-}
-};
-
-
-Data helper(TreeNode* root, int &maxSize) {
-	// For NULL
-	if (root == NULL) {
-		Data temp(true, INT_MIN, INT_MAX, 0);
-		return temp;
-}
-
-	// Leaf Node
-
-
-Data left = helper(root->left, maxSize);
-Data right = helper(root->right, maxSize);
-
-bool isBST = left.isBST and right.isBST and left.maxVal < root->val and root->val < right.minVal;
-
-
-int curSize = 1 + left.size + right.size;
-
-if (isBST) {
-	maxSize = max(maxSize, curSize);
-}
-
-int curMaxVal = max(root->val, right.maxVal);
-int curMinVal = min(root->val, left.minVal);
-
-Data temp(isBST, curMaxVal, curMinVal, curSize);
-return temp;
-
-	
-
-}
-
-
-int largestBSTSubtree(TreeNode* root) {
-if (root == NULL) {
-return 0;
-}
-int maxSize = 0;
-Data ans = helper(root, maxSize);
-return maxSize;
- }
-
+    vector<int> bst(TreeNode *root,int &maxi)
+    {
+        if(root==NULL)
+            return {0,INT_MAX,INT_MIN};
+        
+        vector<int> left=bst(root->left,maxi);
+        vector<int> right=bst(root->right,maxi);
+        
+        if(left[0]==-1||right[0]==-1||root->val<=left[2]||root->val>=right[1])
+            return {-1,0,0};
+        int size=1+left[0]+right[0];
+        maxi=max(maxi,size);
+        return {size,min(root->val,left[1]),max(root->val,right[2])};
+    }
+    int largestBSTSubtree(TreeNode* root) {
+        int maxi=0;
+        bst(root,maxi);
+        return maxi;
+    }
 };
